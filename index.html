@@ -67,7 +67,7 @@
 		<input size="75" type="text" name="question" id="question" placeholder="Question...">
 		<input class="button button-primary" type="submit" name="search" id="search" value="Search Answers">
 
-		<p id="answer"></p>
+		<p id="q-answer"></p>
 		<p class="add-word" style="display: none;">This question doesn't have an answer yet, but you can submit one yourself!
 			<button class="button" id="add">Answer</button>
 		</p>
@@ -120,7 +120,7 @@
     	var result = res.result;
 			if (result === 'null') {
 				$(".add-word").css("display", 'block');
-				$("#answer").css("display", 'none');
+				$("#q-answer").css("display", 'none');
 			} else {
 
 				try {
@@ -131,10 +131,10 @@
 
 				if (result.question) {
 					$(".add-word").css("display", 'none');
-					$("#answer").css("display", 'block');
+					$("#q-answer").css("display", 'block');
 
             	var answer = result.answer;
-            	$("#answer").html("Answer: " + answer);	
+            	$("#q-answer").html("Answer: " + answer);	
             }
 
         }
@@ -142,7 +142,7 @@
 
 		$("#add").click(function () {
 			$(".add-word").css("display", 'none');
-			$("#answer").css("display", 'none');
+			$("#q-answer").css("display", 'none');
 			$("#search").css("display", 'none');
 			$("#answer").css("display", 'block');
 			$("#push").css("display", 'block');
