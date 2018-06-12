@@ -45,17 +45,6 @@
 			margin-top: 5px;
 		}
 
-		#get-answer {
-			text-align: right;
-			font-size: 2em;
-			color: #FFFFFF;
-			margin-top: 50px;
-			width: 600px;
-			height: 40px;
-			border: 1px solide #666666;
-			border-radius: 4px;
-		}
-
 		#answer {
 			display: none;
 		}
@@ -78,7 +67,7 @@
 		<input size="75" type="text" name="question" id="question" placeholder="Question...">
 		<input class="button button-primary" type="submit" name="search" id="search" value="Search Answers">
 
-		<p id="get-answer"></p>
+		<p id="answer"></p>
 		<p class="add-word" style="display: none;">This question doesn't have an answer yet, but you can submit one yourself!
 			<button class="button" id="add">Answer</button>
 		</p>
@@ -94,11 +83,11 @@
 	<script type="text/javascript">
     "use strict";
 
-    var dappAddress = "n1pydtwt1aesQYEYrkXNWY4aVqiNCYjdvZe";
+    var dappAddress = "n1rNGEHc5UE33oPaAnSGu4HNN6uc6qW5GSj";
     var nebulas = require("nebulas"),
         Account = nebulas.Account,
         neb = new nebulas.Neb();
-		neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+		neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
 
 		$("#search").click(function () {
 			if (!$("#question").val()) {
@@ -131,7 +120,7 @@
     	var result = res.result;
 			if (result === 'null') {
 				$(".add-word").css("display", 'block');
-				$("#get-answer").css("display", 'none');
+				$("#answer").css("display", 'none');
 			} else {
 
 				try {
@@ -142,10 +131,10 @@
 
 				if (result.question) {
 					$(".add-word").css("display", 'none');
-					$("#get-answer").css("display", 'block');
+					$("#answer").css("display", 'block');
 
             	var answer = result.answer;
-            	$("#get-answer").html(answer);	
+            	$("#answer").html("Answer: " + answer);	
             }
 
         }
@@ -153,7 +142,7 @@
 
 		$("#add").click(function () {
 			$(".add-word").css("display", 'none');
-			$("#get-answer").css("display", 'none');
+			$("#answer").css("display", 'none');
 			$("#search").css("display", 'none');
 			$("#answer").css("display", 'block');
 			$("#push").css("display", 'block');
